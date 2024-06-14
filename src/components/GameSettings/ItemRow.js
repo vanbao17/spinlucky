@@ -32,7 +32,8 @@ function ItemRow({ data, statePage, totalPercent }) {
     let percent = refPercent.current.value;
     let image_item = refImage.current.value;
     let id_item = data.id_item;
-    if (percent <= 1 - totalPercent || percent == 1) {
+
+    if (percent <= (1 - totalPercent).toFixed(1) || percent == 1) {
       const options = {
         method: "POST",
         headers: {

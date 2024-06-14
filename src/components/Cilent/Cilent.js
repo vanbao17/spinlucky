@@ -257,7 +257,6 @@ function Cilent() {
         console.log(err);
       });
   };
-
   return (
     <div className={cx("wrapper")}>
       {statepopup == true ? (
@@ -327,27 +326,26 @@ function Cilent() {
               segments={data.map((segment) => segment.name_item)}
               segColors={data.map((segment) => segment.color)}
               onFinished={(wn) => {
-                setwinner(wn);
-                const checkitem = data.filter((item) => item.name_item == wn);
-                let dataInsert = {
-                  id_item: checkitem[0].id_item,
-                  id_user: user.id_user,
-                  date: formatDate(new Date()),
-                };
+                setTimeout(() => {
+                  setwinner(wn);
+                  const checkitem = data.filter((item) => item.name_item == wn);
+                  let dataInsert = {
+                    id_item: checkitem[0].id_item,
+                    id_user: user.id_user,
+                    date: formatDate(new Date()),
+                  };
 
-                handleAddHistory(dataInsert);
-                // setTimeout(() => {
-
-                // }, 2000);
+                  handleAddHistory(dataInsert);
+                }, 1000);
               }}
               primaryColor="white"
               contrastColor="black"
               buttonText="Quay"
               winningSegment={dt}
               isOnlyOnce={false}
-              size={190}
-              upDuration={500}
-              downDuration={600}
+              size={260}
+              upDuration={100}
+              downDuration={1000}
               fontFamily="Arial"
             />
           ) : (
