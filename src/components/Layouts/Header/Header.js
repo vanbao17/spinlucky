@@ -48,7 +48,9 @@ function Header() {
             onClick={() => {
               setstateHideMenu(!stateHideMenu);
             }}
-          ></div>
+          >
+            Options
+          </div>
 
           {stateHideMenu == true ? (
             <ul className={cx("combobox_admin")}>
