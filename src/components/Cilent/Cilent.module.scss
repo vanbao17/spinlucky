@@ -1,0 +1,268 @@
+@media (max-width: 768px) {
+  .wrapper {
+    width: 100%;
+    color: #fff;
+    overflow: hidden;
+    position: relative;
+  }
+  .container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 0px auto;
+    justify-content: center;
+  }
+  .elementwheel {
+    width: 100%;
+    margin-left: -84px;
+    margin-bottom: -250px;
+  }
+  .containerhistory {
+    width: 100%;
+    display: block;
+    height: 500px;
+    overflow-y: scroll;
+  }
+  .video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+  }
+
+  .video-background video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .history {
+    width: 90%;
+    height: 70%;
+    overflow-y: scroll;
+    border-radius: 15px;
+    margin: 0px auto;
+    background-color: #fff;
+    color: black;
+  }
+  .congrats-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+
+  .congrats-box {
+    background-color: #f8f9fa;
+    border: 2px solid #28a745;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding: 20px;
+    z-index: 1001; /* Đảm bảo box nổi trên overlay */
+  }
+
+  .congrats-content h2 {
+    color: #28a745;
+    margin-bottom: 10px;
+  }
+
+  .congrats-content p {
+    color: #333;
+  }
+  .btn-close {
+    background-color: #28a745;
+    padding: 6px 12px;
+    border-radius: 10px;
+    transition: 0.25s;
+    cursor: pointer;
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 18px;
+    text-align: left;
+  }
+  th,
+  td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+  }
+  th {
+    background-color: #f2f2f2;
+  }
+  tr:hover {
+    background-color: #f5f5f5;
+  }
+  .btn-action {
+    button {
+      padding: 12px;
+      margin-right: 20px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 20px;
+      outline: none;
+      border-radius: 15px;
+      border: transparent;
+    }
+    button:nth-child(1) {
+      background-color: #28a745;
+      color: #fff;
+    }
+    button:nth-child(2) {
+      background-color: red;
+      color: #fff;
+    }
+  }
+  .container_input {
+    display: flex;
+    flex-direction: column;
+    input {
+      padding: 12px;
+      margin-bottom: 20px;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    width: 100%;
+    display: flex;
+    margin: 0px auto;
+    position: relative;
+
+    justify-content: center;
+  }
+  .elementwheel {
+    width: 30%;
+  }
+  .containerhistory {
+    width: 50%;
+    display: block;
+  }
+  .video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+  }
+
+  .video-background video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .wrapper {
+    color: #fff;
+  }
+  .history {
+    width: 50%;
+    height: 70%;
+    overflow-y: scroll;
+    border-radius: 15px;
+    margin: 0px auto;
+    background-color: #fff;
+    color: black;
+  }
+  .congrats-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+
+  .congrats-box {
+    background-color: #f8f9fa;
+    border: 2px solid #28a745;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding: 20px;
+    z-index: 1001; /* Đảm bảo box nổi trên overlay */
+  }
+
+  .congrats-content h2 {
+    color: #28a745;
+    margin-bottom: 10px;
+  }
+
+  .congrats-content p {
+    color: #333;
+  }
+  .btn-close {
+    background-color: #28a745;
+    padding: 6px 12px;
+    border-radius: 10px;
+    transition: 0.25s;
+    cursor: pointer;
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 18px;
+    text-align: left;
+  }
+  th,
+  td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+  }
+  th {
+    background-color: #f2f2f2;
+  }
+  tr:hover {
+    background-color: #f5f5f5;
+  }
+  .btn-action {
+    button {
+      padding: 12px;
+      margin-right: 20px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 20px;
+      outline: none;
+      border-radius: 15px;
+      border: transparent;
+    }
+    button:nth-child(1) {
+      background-color: #28a745;
+      color: #fff;
+    }
+    button:nth-child(2) {
+      background-color: red;
+      color: #fff;
+    }
+  }
+  .container_input {
+    display: flex;
+    flex-direction: column;
+    input {
+      padding: 12px;
+      margin-bottom: 20px;
+    }
+  }
+}

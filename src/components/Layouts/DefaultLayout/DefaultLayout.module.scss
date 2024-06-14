@@ -1,0 +1,53 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Black Ops One", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+body {
+  overflow-y: overlay;
+}
+html *::-webkit-scrollbar {
+  border-radius: 0;
+  width: 8px;
+}
+html *::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: rgba(22, 24, 35, 0.29);
+}
+html *::-webkit-scrollbar-track {
+  border-radius: 0;
+  background-color: rgba(0, 0, 0, 0);
+}
+.wrapper {
+  background-color: #f2f3f4;
+  height: 100vh;
+}
+.container {
+  padding: 20px;
+  display: flex;
+}
+.content {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+  background-color: #f2f3f4;
+}
+@media only screen and (max-width: 768px) {
+  .content {
+    width: 90%;
+    display: flex;
+    background-color: #f2f3f4;
+    flex-direction: column;
+  }
+  .container {
+    display: flex;
+    padding: 0;
+  }
+  .container_sidebar {
+    display: none;
+  }
+}

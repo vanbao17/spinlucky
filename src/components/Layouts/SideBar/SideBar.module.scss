@@ -1,0 +1,34 @@
+.wrapper {
+  width: 100%;
+  background-color: #fff;
+  height: 100vh;
+  border-radius: 10px;
+}
+
+.container {
+  padding: 20px;
+}
+li {
+  list-style-type: none;
+  padding: 10px 15px;
+}
+a {
+  text-decoration: none;
+  color: black;
+  font-weight: 600;
+}
+.infor_web {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.container div > p {
+  color: #ababab;
+  margin-top: 10px;
+}
+.img_infor {
+  width: 50px;
+  img {
+    width: 100%;
+  }
+}
