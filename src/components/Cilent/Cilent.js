@@ -17,6 +17,10 @@ function Cilent() {
   const refPassword = useRef();
   const [user, setuser] = useState();
   const username = sessionStorage.getItem("username");
+  const [state, setState] = useState(0);
+  const [winner, setwinner] = useState(null);
+  const [history, sethistory] = useState([]);
+  const [historydb, sethistorydb] = useState([]);
   // const [data, setdata] = useState([...segments2]);
   useEffect(() => {
     const userSession = sessionStorage.getItem("username");
@@ -72,7 +76,41 @@ function Cilent() {
         console.log(err);
       });
   };
-
+  useEffect(() => {
+    fetch("http://localhost:3001/api/v1/findwithusername", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({ username }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data != undefined) {
+          setuser(data[0]);
+          let id_user = data[0].id_user;
+          fetch("http://localhost:3001/api/v1/getdstrungthuong", {
+            method: "POST",
+            headers: {
+              "Content-type": "application/json",
+            },
+            body: JSON.stringify({ id_user }),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              if (data != undefined) {
+                sethistorydb(data);
+              }
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
   useEffect(() => {
     fetch("http://localhost:3001/api/v1/findwithusername", {
       method: "POST",
@@ -133,10 +171,7 @@ function Cilent() {
         console.log(err);
       });
   }, []);
-  console.log(data);
-  const [state, setState] = useState(0);
-  const [winner, setwinner] = useState(null);
-  const [history, sethistory] = useState([]);
+
   // function getRandomColor() {
   //   const letters = "0123456789ABCDEF";
   //   let color = "#";
@@ -145,6 +180,7 @@ function Cilent() {
   //   }
   //   return color;
   // }
+
   function getRandomElement(elements) {
     if (elements.length != 0) {
       const totalPercent = Math.round(
@@ -184,6 +220,44 @@ function Cilent() {
     return `${day}/${month}/${year} ${hours}:${minutes}`;
   }
   const dt = data.length != 0 ? getRandomElement(data) : "";
+  const handleAddHistory = (history) => {
+    const id_user = history.id_user;
+    const id_item = history.id_item;
+    const date = history.date;
+
+    fetch("http://localhost:3001/api/v1/addHistory", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({ id_user, id_item, date }),
+    })
+      .then((response) => {
+        if (response.status == 200) {
+          fetch("http://localhost:3001/api/v1/getdstrungthuong", {
+            method: "POST",
+            headers: {
+              "Content-type": "application/json",
+            },
+            body: JSON.stringify({ id_user }),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              if (data != undefined) {
+                sethistorydb(data);
+              }
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        }
+      })
+
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <div className={cx("wrapper")}>
       {statepopup == true ? (
@@ -254,10 +328,14 @@ function Cilent() {
               segColors={data.map((segment) => segment.color)}
               onFinished={(wn) => {
                 setwinner(wn);
-                sethistory([
-                  ...history,
-                  { item: wn, date: formatDate(new Date()) },
-                ]);
+                const checkitem = data.filter((item) => item.name_item == wn);
+                let dataInsert = {
+                  id_item: checkitem[0].id_item,
+                  id_user: user.id_user,
+                  date: formatDate(new Date()),
+                };
+
+                handleAddHistory(dataInsert);
                 // setTimeout(() => {
 
                 // }, 2000);
@@ -281,7 +359,7 @@ function Cilent() {
           <h2>Lịch sử trúng thưởng</h2>
 
           <div className={cx("history")}>
-            {history.length == 0 ? (
+            {historydb.length == 0 ? (
               <h3
                 style={{
                   width: "100%",
@@ -302,11 +380,14 @@ function Cilent() {
                   </tr>
                 </thead>
                 <tbody>
-                  {history.map((item, index) => {
+                  {historydb.map((item, index) => {
+                    const name = data.filter(
+                      (item1) => item1.id_item == item.id_item
+                    );
                     return (
                       <tr>
                         <td>{index + 1}</td>
-                        <td>{item.item}</td>
+                        <td>{name.length != 0 ? name[0].name_item : ""}</td>
                         <td>{item.date}</td>
                       </tr>
                     );

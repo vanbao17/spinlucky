@@ -6,5 +6,6 @@ const routes = {
   admin: "/Admin",
   game: "/Admin/GameSetting",
   settinguser: "/Admin/SettingUser",
+  historyuser: "/Admin/HistoryUser",
 };
 export default routes;

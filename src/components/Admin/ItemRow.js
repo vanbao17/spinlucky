@@ -108,6 +108,13 @@ function ItemRow({ data, statePage }) {
             >
               Chỉnh sửa tỉ lệ
             </li>
+            <li
+              onClick={() => {
+                nav("/Admin/HistoryUser", { state: { dt: data.id_user } });
+              }}
+            >
+              Xem lịch sử
+            </li>
             <li onClick={handleDelete}>Xóa</li>
           </ul>
         ) : (

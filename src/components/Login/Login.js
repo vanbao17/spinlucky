@@ -133,7 +133,7 @@ function Login() {
               <img onClick={handleLogin} src={media.loginButton}></img>
               <img
                 onClick={() => {
-                  nav("/Account/Register");
+                  nav("/Register");
                 }}
                 src={media.registerButton}
               ></img>

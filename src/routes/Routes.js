@@ -7,6 +7,7 @@ import Register from "../components/Register/Register";
 import GameSettings from "../components/GameSettings/GameSettings";
 import SettingUser from "../components/SettingUser/SettingUser";
 import React from "react";
+import HistoryUser from "../components/HistoryUser/HistoryUser";
 const publicRoutes = [
   {
     path: routes.home,
@@ -20,6 +21,10 @@ const publicRoutes = [
   {
     path: routes.settinguser,
     component: SettingUser,
+  },
+  {
+    path: routes.historyuser,
+    component: HistoryUser,
   },
   {
     path: routes.game,

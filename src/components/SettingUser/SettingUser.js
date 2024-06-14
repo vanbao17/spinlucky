@@ -44,18 +44,6 @@ function SettingUser() {
     }
   }, [dataChange]);
   useEffect(() => {
-    fetch("http://localhost:3001/api/v1/getItems")
-      .then((response) => response.json())
-      .then((dt1) => {
-        if (dt1 != undefined && dt1.length != 0) {
-          setitems([...dt1]);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
-  useEffect(() => {
     fetch("http://localhost:3001/api/v1/getuserpercent", {
       method: "POST",
       headers: {
@@ -65,57 +53,97 @@ function SettingUser() {
     })
       .then((response) => response.json())
       .then((data) => {
-        if (data != undefined && data.length != 0) {
+        if (data.length !== 0) {
           setuserpercent(data);
+        } else {
+          fetch("http://localhost:3001/api/v1/getItems")
+            .then((response) => response.json())
+            .then((dt1) => {
+              if (dt1 != undefined && dt1.length != 0) {
+                setitems([...dt1]);
+              }
+            })
+            .catch((err) => {
+              console.log(err);
+            });
         }
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
+
   const handleUpdateData = () => {
-    userpercent.map((item, index) => {
-      let check = dataChange.filter(
-        (dt) => dt.id_item == item.id_item && dt.id_user == id_user
-      );
-      if (check.length != 0) {
-        item.percent = parseFloat(check[0].percent);
-      }
-      fetch("http://localhost:3001/api/v1/deleteuserpercent", {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify({ id_user }),
-      })
-        .then((response) => {
-          if (response.status == 200) {
-            let id_user = item.id_user;
-            let id_item = item.id_item;
-            let percent = item.percent;
-            fetch("http://localhost:3001/api/v1/adduserpercent", {
-              method: "POST",
-              headers: {
-                "Content-type": "application/json",
-              },
-              body: JSON.stringify({ id_user, id_item, percent }),
-            })
-              .then((response1) => {
-                if (response1.status == 200) {
-                  console.log("oke");
-                }
-              })
-              .catch((err1) => {
-                console.log(err1);
-              });
-            nav("/Admin");
-          }
+    if (userpercent.length == 0) {
+      items.map((item, index) => {
+        let check = dataChange.filter((dt) => dt.id_item == item.id_item);
+        if (check.length != 0) {
+          item.percent = parseFloat(check[0].percent);
+        }
+        let id_item = item.id_item;
+        let percent = item.percent;
+        fetch("http://localhost:3001/api/v1/adduserpercent", {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify({ id_user, id_item, percent }),
         })
-        .catch((err) => {
-          console.log(err);
-        });
-    });
+          .then((response1) => {
+            if (response1.status == 200) {
+              console.log("oke");
+            }
+          })
+          .catch((err1) => {
+            console.log(err1);
+          });
+      });
+      nav("/Admin");
+    } else {
+      userpercent.map((item, index) => {
+        let check = dataChange.filter(
+          (dt) => dt.id_item == item.id_item && dt.id_user == id_user
+        );
+        if (check.length != 0) {
+          item.percent = parseFloat(check[0].percent);
+        }
+        fetch("http://localhost:3001/api/v1/deleteuserpercent", {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify({ id_user }),
+        })
+          .then((response) => {
+            if (response.status == 200) {
+              let id_user = item.id_user;
+              let id_item = item.id_item;
+              let percent = item.percent;
+              fetch("http://localhost:3001/api/v1/adduserpercent", {
+                method: "POST",
+                headers: {
+                  "Content-type": "application/json",
+                },
+                body: JSON.stringify({ id_user, id_item, percent }),
+              })
+                .then((response1) => {
+                  if (response1.status == 200) {
+                    console.log("oke");
+                  }
+                })
+                .catch((err1) => {
+                  console.log(err1);
+                });
+              nav("/Admin");
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      });
+    }
   };
+  console.log(userpercent.length);
   return (
     <div className={cx("wrapper")}>
       <div className={cx("container")}>
@@ -123,7 +151,7 @@ function SettingUser() {
           <div>Chỉnh sửa tỉ lệ cho user tổng tỉ lệ nhỏ hơn hoặc bằng 1</div>
         </div>
         <div className={cx("container_data")}>
-          {/* {userpercent.length != 0
+          {userpercent.length !== 0
             ? userpercent.map((item, index) => {
                 return (
                   <ItemSettingUser
@@ -142,8 +170,8 @@ function SettingUser() {
                     item={item}
                   />
                 );
-              })} */}
-          {userpercent.map((item, index) => {
+              })}
+          {/* {userpercent.map((item, index) => {
             return (
               <ItemSettingUser
                 sendtoData={handleData}
@@ -152,7 +180,8 @@ function SettingUser() {
                 userpercent={true}
               />
             );
-          })}
+          })} */}
+
           {/* {items.map((item, index) => {
             return (
               <ItemSettingUser
