@@ -1,8 +1,10 @@
 import classNames from "classnames/bind";
 import styles from "./SettingUser.module.scss";
 import { useEffect, useRef, useState } from "react";
+import React from "react";
 import Popup from "../Popup/Popup";
 const cx = classNames.bind(styles);
+
 function ItemSettingUser({ state, item, sendtoData, userpercent }) {
   const refName = useRef();
   const refPercent = useRef();

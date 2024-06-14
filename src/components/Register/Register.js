@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useRef, useState } from "react";
 import images from "../../Assets";
 import { useMediaQuery } from "react-responsive";
+import React from "react";
 const cx = classNames.bind(styles);
 
 function Register() {

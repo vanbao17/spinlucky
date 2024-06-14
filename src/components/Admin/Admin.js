@@ -1,9 +1,11 @@
 import classNames from "classnames/bind";
 import styles from "./Admin.module.scss";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import ItemRow from "./ItemRow";
 import { useEffect, useState } from "react";
+import React from "react";
 const cx = classNames.bind(styles);
+
 function Admin() {
   const [datauser, setdatauser] = useState([]);
   const [st, setst] = useState(false);
@@ -61,9 +63,7 @@ function Admin() {
       <div className={cx("container")}>
         <div className={cx("container_search")}>
           <div>
-            <div className={cx("icon")}>
-              <FontAwesomeIcon icon="search" />
-            </div>
+            <div className={cx("icon")}></div>
             <input
               onChange={handleChangeSearch}
               type="check"

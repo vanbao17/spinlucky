@@ -6,7 +6,7 @@ import PageAtemp from "../components/Layouts/PageAtemp/PageAtemp";
 import Register from "../components/Register/Register";
 import GameSettings from "../components/GameSettings/GameSettings";
 import SettingUser from "../components/SettingUser/SettingUser";
-
+import React from "react";
 const publicRoutes = [
   {
     path: routes.home,

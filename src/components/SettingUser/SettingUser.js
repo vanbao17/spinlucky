@@ -2,10 +2,12 @@ import classNames from "classnames/bind";
 import styles from "./SettingUser.module.scss";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import ItemSettingUser from "./ItemSettingUser";
 import Popup from "../Popup/Popup";
+import React from "react";
 const cx = classNames.bind(styles);
+
 function SettingUser() {
   const location = useLocation();
   const id_user = location.state?.dt;

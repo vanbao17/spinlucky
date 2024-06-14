@@ -1,13 +1,12 @@
 import classNames from "classnames/bind";
 import styles from "./Header.module.scss";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { fas } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import { useMediaQuery } from "react-responsive";
 import { useNavigate } from "react-router-dom";
+import React from "react";
 import { useContext, useState } from "react";
 import SideBar from "../SideBar/SideBar";
-library.add(fas);
+
 const cx = classNames.bind(styles);
 function Header() {
   const isDesktopOrLaptop = useMediaQuery({ query: "(min-width: 1224px)" });
@@ -27,9 +26,7 @@ function Header() {
             onClick={() => {
               setsidebar(!sidebar);
             }}
-          >
-            <FontAwesomeIcon icon="bars" />
-          </div>
+          ></div>
         ) : (
           <span>Vai trò của bạn: ADMIN</span>
         )}
@@ -42,9 +39,7 @@ function Header() {
             onClick={() => {
               setsidebar(!sidebar);
             }}
-          >
-            <FontAwesomeIcon icon="times" />
-          </div>
+          ></div>
         </div>
         <div className={cx("action_admin")}>
           <div></div>
@@ -53,16 +48,11 @@ function Header() {
             onClick={() => {
               setstateHideMenu(!stateHideMenu);
             }}
-          >
-            <FontAwesomeIcon icon={["fas", "user"]} />
-          </div>
+          ></div>
 
           {stateHideMenu == true ? (
             <ul className={cx("combobox_admin")}>
-              <li onClick={handleLogout}>
-                <FontAwesomeIcon icon="sign-out-alt" />
-                Logout
-              </li>
+              <li onClick={handleLogout}>Logout</li>
             </ul>
           ) : (
             <></>

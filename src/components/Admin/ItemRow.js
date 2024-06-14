@@ -1,10 +1,11 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classNames from "classnames/bind";
 import styles from "./Admin.module.scss";
 import { useContext, useRef, useState } from "react";
 import Popup from "../Popup/Popup";
 import { useNavigate } from "react-router-dom";
+import React from "react";
 const cx = classNames.bind(styles);
+
 function ItemRow({ data, statePage }) {
   const nav = useNavigate();
   const [state, setstate] = useState(false);
@@ -88,7 +89,7 @@ function ItemRow({ data, statePage }) {
             setstate(!state);
           }}
         >
-          <FontAwesomeIcon icon="ellipsis-v" />
+          Sửa
         </div>
         {state == true ? (
           <ul className={cx("combobox_item")}>

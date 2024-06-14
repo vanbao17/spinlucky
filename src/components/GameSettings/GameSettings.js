@@ -1,10 +1,12 @@
 import classNames from "classnames/bind";
 import styles from "./GameSettings.module.scss";
 import { useEffect, useRef, useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import ItemRow from "./ItemRow";
 import Popup from "../Popup/Popup";
+import React from "react";
 const cx = classNames.bind(styles);
+
 function GameSettings() {
   const [datauser, setdatauser] = useState([]);
   const [st, setst] = useState(false);
@@ -111,9 +113,7 @@ function GameSettings() {
       <div className={cx("container")}>
         <div className={cx("container_header")}>
           <div className={cx("container_search")}>
-            <div className={cx("icon")}>
-              <FontAwesomeIcon icon="search" />
-            </div>
+            <div className={cx("icon")}></div>
             <input
               onChange={handleChangeSearch}
               type="check"

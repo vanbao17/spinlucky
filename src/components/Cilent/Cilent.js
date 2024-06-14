@@ -7,7 +7,9 @@ import media from "../../Assets";
 import classNames from "classnames/bind";
 import styles from "./Cilent.module.scss";
 import Popup from "../Popup/Popup";
+import React from "react";
 const cx = classNames.bind(styles);
+
 function Cilent() {
   const navigate = useNavigate();
   const [data, setdata] = useState([]);

@@ -3,6 +3,7 @@ import styles from "./DefaultLayout.module.scss";
 import SideBar from "../SideBar/SideBar";
 import Header from "../Header/Header";
 import { useMediaQuery } from "react-responsive";
+import React from "react";
 const cx = classNames.bind(styles);
 
 function DefaultLayout({ children }) {

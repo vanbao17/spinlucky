@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "./App.css";
+import React from "react";
 import WheelComponent from "react-wheel-of-prizes";
 function WheelWrapper({ data, dt }) {
   const [names, setNames] = useState([]);
