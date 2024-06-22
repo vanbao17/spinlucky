@@ -206,6 +206,7 @@ function Cilent() {
           <button
             onClick={() => {
               localStorage.clear();
+              setState(!state);
             }}
           >
             <span>Xóa lịch sử trúng thưởng </span>
