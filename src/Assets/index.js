@@ -21,5 +21,7 @@ const media = {
   imgHistory: require("./images/khung-lich-su.png"),
   imgTitle: require("./images/chu-vong-quay-may-man.png"),
   imgCong: require("./images/khung-chuc-mung-nguoi-trung.png"),
+  imgKhungUser: require("./images/khungusser.png"),
+  imgKhungInput: require("./images/khunginput.png"),
 };
 export default media;

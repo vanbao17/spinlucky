@@ -10,6 +10,10 @@
   border-collapse: collapse;
   color: black !important;
 }
+.wrapper li {
+  padding: 10px 12px;
+  list-style-type: none;
+}
 th,
 td {
   border: 1px solid #dddddd;

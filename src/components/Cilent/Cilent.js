@@ -9,6 +9,7 @@ import styles from "./Cilent.module.scss";
 import Popup from "../Popup/Popup";
 import React from "react";
 import { useMediaQuery } from "react-responsive";
+import { FaTimes } from "react-icons/fa";
 const cx = classNames.bind(styles);
 
 function Cilent() {
@@ -18,9 +19,7 @@ function Cilent() {
   const [winner, setwinner] = useState(null);
   const [smallScreen, setsmallScreen] = useState(false);
   const [historydb, sethistorydb] = useState([]);
-  const [historySession, sethistorySession] = useState(
-    JSON.parse(sessionStorage.getItem("history"))
-  );
+  const refName = useRef();
   if (!localStorage.getItem("history")) {
     localStorage.setItem("history", JSON.stringify([]));
   }
@@ -51,10 +50,10 @@ function Cilent() {
       const totalPercent = Math.round(
         elements.reduce((acc, segment) => acc + segment.percent, 0)
       );
-      if (totalPercent !== 1) {
-        console.error("Tổng phần trăm không bằng 1.");
-        return null;
-      }
+      // if (totalPercent !== 1) {
+      //   console.error("Tổng phần trăm không bằng 1.");
+      //   return null;
+      // }
       const ranges = [];
       let startRange = 0;
       elements.forEach((segment) => {
@@ -85,7 +84,16 @@ function Cilent() {
     return `${day}/${month}/${year} ${hours}:${minutes}`;
   }
   const dt = data.length != 0 ? getRandomElement(data) : "";
-
+  function getRandomColor() {
+    let color;
+    do {
+      const r = Math.floor(Math.random() * 256);
+      const g = Math.floor(Math.random() * 256);
+      const b = Math.floor(Math.random() * 256);
+      color = `rgb(${r},${g},${b})`;
+    } while (color === "rgb(0,0,0)");
+    return color;
+  }
   useEffect(() => {
     if (isSmallScreen == true) {
       setsmallScreen(true);
@@ -94,15 +102,124 @@ function Cilent() {
     }
   }, [isSmallScreen]);
   // localStorage.setItem("history", JSON.stringify(historydb));
+  const handleAdd = () => {
+    let name_item = refName.current.value;
+    let percent = 0;
+    let color = getRandomColor();
+    let image_item = "refImage";
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({ name_item, percent, color, image_item }),
+    };
+    fetch("https://vongquay.xyz/api/v1/addItem", options)
+      .then((response) => {
+        if (response.status == 200) {
+          fetch("https://vongquay.xyz/api/v1/getItems")
+            .then((response) => response.json())
+            .then((dt3) => {
+              if (dt3 != undefined && dt3.length != 0) {
+                refName.current.value = "";
+                setState(!state);
+                setdata([...dt3]);
+              }
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  const handleDelete = (data) => {
+    const id_item = data.id_item;
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({ id_item }),
+    };
+    fetch("https://vongquay.xyz/api/v1/deleteItem", options)
+      .then((response) => {
+        if (response.status == 200) {
+          fetch("https://vongquay.xyz/api/v1/getItems")
+            .then((response) => response.json())
+            .then((dt3) => {
+              if (dt3 != undefined && dt3.length != 0) {
+                setdata([...dt3]);
+                setState(!state);
+              }
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   return (
     <div className={cx("wrapper")}>
-      <span>
-        <img className={cx("imgTitle")} src={media.imgTitle}></img>
-      </span>
+      <img className={cx("imgTitle")} src={media.imgTitle}></img>
       <div className={cx("video-background")}>
         <img src={media.imgBackGround}></img>
       </div>
       <div className={cx("container")}>
+        <div className={cx("containerhistory")}>
+          <button
+            onClick={() => {
+              localStorage.clear();
+            }}
+          >
+            <span>Xóa lịch sử trúng thưởng </span>
+          </button>
+          <div
+            className={cx("history")}
+            style={{ backgroundImage: `url(${media.imgHistory})` }}
+          >
+            <h2>Lịch sử trúng thưởng</h2>
+            {JSON.parse(localStorage.getItem("history")).length == 0 ? (
+              <h3
+                style={{
+                  width: "100%",
+                  textAlign: "center",
+                  display: "block",
+                  marginTop: "40px",
+                  color: "#fff",
+                }}
+              >
+                Chưa có lịch sử
+              </h3>
+            ) : (
+              <div className={cx("containerTable")}>
+                <table>
+                  <tbody>
+                    {JSON.parse(localStorage.getItem("history")).map(
+                      (item, index) => {
+                        const name = data.filter(
+                          (item1) => item1.id_item == item.id_item
+                        );
+                        return (
+                          <tr>
+                            <td>{index + 1}</td>
+                            <td>{name.length != 0 ? name[0].name_item : ""}</td>
+                            <td>{item.date}</td>
+                          </tr>
+                        );
+                      }
+                    )}
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </div>
+        </div>
         <div className={cx("elementwheel")}>
           {data.length != 0 ? (
             <WheelComponent
@@ -137,47 +254,40 @@ function Cilent() {
             <></>
           )}
         </div>
-
-        <div className={cx("containerhistory")}>
-          <div
-            className={cx("history")}
-            style={{ backgroundImage: `url(${media.imgHistory})` }}
-          >
-            <h2>Lịch sử trúng thưởng</h2>
-            {JSON.parse(localStorage.getItem("history")).length == 0 ? (
-              <h3
-                style={{
-                  width: "100%",
-                  textAlign: "center",
-                  display: "block",
-                  marginTop: "30px",
-                }}
-              >
-                Chưa có lịch sử
-              </h3>
-            ) : (
-              <div className={cx("containerTable")}>
-                <table>
-                  <tbody>
-                    {JSON.parse(localStorage.getItem("history")).map(
-                      (item, index) => {
-                        const name = data.filter(
-                          (item1) => item1.id_item == item.id_item
-                        );
-                        return (
-                          <tr>
-                            <td>{index + 1}</td>
-                            <td>{name.length != 0 ? name[0].name_item : ""}</td>
-                            <td>{item.date}</td>
-                          </tr>
-                        );
-                      }
-                    )}
-                  </tbody>
-                </table>
-              </div>
-            )}
+        <div className={cx("container_add_item")}>
+          <div className={cx("form")}>
+            <div
+              className={cx("container_input")}
+              style={{ backgroundImage: `url(${media.imgKhungInput})` }}
+            >
+              <input ref={refName} type="text"></input>
+            </div>
+            <button onClick={handleAdd}>
+              <span>Thêm</span>
+            </button>
           </div>
+          <ul
+            className={cx("list_item")}
+            style={{ backgroundImage: `url(${media.imgKhungUser})` }}
+          >
+            {data.map((it, index) => {
+              return (
+                <li key={index}>
+                  <span>
+                    {it.id_item} -- {it.name_item}
+                  </span>
+                  <div
+                    className={cx("icon")}
+                    onClick={() => {
+                      handleDelete(it);
+                    }}
+                  >
+                    <FaTimes />
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
         </div>
       </div>
       {winner != null ? (
