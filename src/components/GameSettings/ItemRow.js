@@ -3,6 +3,7 @@ import styles from "./GameSettings.module.scss";
 import { useContext, useRef, useState } from "react";
 import Popup from "../Popup/Popup";
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const cx = classNames.bind(styles);
 
 function ItemRow({ data, statePage, totalPercent }) {
@@ -142,7 +143,7 @@ function ItemRow({ data, statePage, totalPercent }) {
             setstate(!state);
           }}
         >
-          Sửa
+          <FontAwesomeIcon icon="ellipsis-v" />
         </div>
         {state == true ? (
           <ul className={cx("combobox_item")}>

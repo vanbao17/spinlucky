@@ -91,7 +91,6 @@ function ItemRow({ data, statePage }) {
           }}
         >
           <FontAwesomeIcon icon="ellipsis-v" />
-          Sửa
         </div>
         {state == true ? (
           <ul className={cx("combobox_item")}>
