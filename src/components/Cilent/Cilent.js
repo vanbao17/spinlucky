@@ -25,7 +25,6 @@ function Cilent() {
   }
   function addToLocalStorageArray(obj) {
     let myArray = JSON.parse(localStorage.getItem("history"));
-    console.log(myArray);
     myArray.push(obj);
     localStorage.setItem("history", JSON.stringify(myArray));
   }
