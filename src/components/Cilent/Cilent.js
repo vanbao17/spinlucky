@@ -297,7 +297,7 @@ function Cilent() {
       ) : (
         <></>
       )}
-      {/* <div className={cx("btn-action")}>
+      <div className={cx("btn-action")}>
         <button
           onClick={() => {
             setstatepopup(!statepopup);
@@ -313,7 +313,7 @@ function Cilent() {
         >
           <span>Đăng xuất</span>
         </button>
-      </div> */}
+      </div>
       <span>
         <img className={cx("imgTitle")} src={media.imgTitle}></img>
       </span>
