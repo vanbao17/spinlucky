@@ -17,11 +17,13 @@
     width: 100%;
     margin-left: 0;
     // margin-bottom: -250px;
+    order: 1;
   }
   .containerhistory {
     width: 100%;
     display: block;
     height: 500px;
+    order: 3;
   }
   .video-background {
     position: fixed;
@@ -195,6 +197,83 @@
       align-items: center;
       justify-content: space-between;
     }
+  }
+  .container_add_item {
+    width: 94%;
+    height: 80vh;
+    padding: 24px;
+    margin: 0px auto;
+    order: 2;
+    .form {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .form input {
+      width: 93%;
+      padding: 10px 12px;
+      outline: none;
+      margin: 0px auto;
+      margin-top: 35px;
+      border: none;
+    }
+    .form button {
+      padding: 10px 24px;
+      outline: none;
+      background-color: #fda300;
+      border: 1px solid #28a745;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+    .form button span {
+      color: #fff;
+      font-weight: 600;
+    }
+    .form .container_input {
+      width: 70%;
+      height: 100px;
+      background-size: contain; /* Adjust size to cover the container */
+      background-repeat: no-repeat; /* Prevent image repetition */
+      background-position: center;
+    }
+    .list_item {
+      height: 500px;
+      padding: 20px 10px;
+      // background-color: #fff;
+      background-size: cover; /* Adjust size to cover the container */
+      background-repeat: no-repeat; /* Prevent image repetition */
+      background-position: center;
+      border-radius: 10px;
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      overflow-y: scroll;
+    }
+    .list_item li {
+      width: 90%;
+      margin: 0px auto;
+      background-color: #fda300;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 5px 15px;
+    }
+    .list_item .icon {
+      cursor: pointer;
+    }
+  }
+  .containerhistory button {
+    outline: none;
+    padding: 5px 12px;
+    margin-bottom: 12px;
+    background-color: #fda300;
+    border: 1px solid #fda300;
+    border-radius: 10px;
+    color: #fff;
+    font-weight: 700;
+    cursor: pointer;
   }
 }
 
@@ -655,5 +734,80 @@
       align-items: center;
       justify-content: space-between;
     }
+  }
+  .container_add_item {
+    width: 25%;
+    height: 80vh;
+    padding: 24px;
+    .form {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .form input {
+      width: 93%;
+      padding: 10px 12px;
+      outline: none;
+      margin: 0px auto;
+      margin-top: 35px;
+      border: none;
+    }
+    .form button {
+      padding: 10px 24px;
+      outline: none;
+      background-color: #fda300;
+      border: 1px solid #28a745;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+    .form button span {
+      color: #fff;
+      font-weight: 600;
+    }
+    .form .container_input {
+      width: 70%;
+      height: 100px;
+      background-size: contain; /* Adjust size to cover the container */
+      background-repeat: no-repeat; /* Prevent image repetition */
+      background-position: center;
+    }
+    .list_item {
+      height: 500px;
+      padding: 20px 10px;
+      // background-color: #fff;
+      background-size: cover; /* Adjust size to cover the container */
+      background-repeat: no-repeat; /* Prevent image repetition */
+      background-position: center;
+      border-radius: 10px;
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      overflow-y: scroll;
+    }
+    .list_item li {
+      width: 90%;
+      margin: 0px auto;
+      background-color: #fda300;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 5px 15px;
+    }
+    .list_item .icon {
+      cursor: pointer;
+    }
+  }
+  .containerhistory button {
+    outline: none;
+    padding: 5px 12px;
+    margin-bottom: 12px;
+    background-color: #fda300;
+    border: 1px solid #fda300;
+    border-radius: 10px;
+    color: #fff;
+    font-weight: 700;
+    cursor: pointer;
   }
 }
