@@ -122,8 +122,8 @@ function Cilent() {
             .then((dt3) => {
               if (dt3 != undefined && dt3.length != 0) {
                 refName.current.value = "";
-                setState(!state);
                 setdata([...dt3]);
+                setState(!state);
               }
             })
             .catch((err) => {
