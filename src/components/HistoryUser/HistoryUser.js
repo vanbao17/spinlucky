@@ -19,7 +19,7 @@ function HistoryUser() {
   //         },
   //         body: JSON.stringify({ username }),
   //       };
-  //       fetch("http://localhost:3001/api/v1/finduser", options)
+  //       fetch("http://localhost:3003/api/v1/finduser", options)
   //         .then((response) => response.json())
   //         .then((data) => {
   //           if (data != undefined) {
@@ -30,7 +30,7 @@ function HistoryUser() {
   //           console.log(err);
   //         });
   //     } else {
-  //       fetch("http://localhost:3001/api/v1/getuser")
+  //       fetch("http://localhost:3003/api/v1/getuser")
   //         .then((response) => response.json())
   //         .then((data) => {
   //           if (data != undefined) {
@@ -43,7 +43,7 @@ function HistoryUser() {
   //     }
   //   };
   useEffect(() => {
-    fetch("http://localhost:3001/api/v1/getdstrungthuong", {
+    fetch("http://localhost:3003/api/v1/getdstrungthuong", {
       method: "POST",
       headers: {
         "Content-type": "application/json",

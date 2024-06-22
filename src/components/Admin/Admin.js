@@ -4,6 +4,7 @@ import styles from "./Admin.module.scss";
 import ItemRow from "./ItemRow";
 import { useEffect, useState } from "react";
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const cx = classNames.bind(styles);
 
 function Admin() {
@@ -19,7 +20,7 @@ function Admin() {
         },
         body: JSON.stringify({ username }),
       };
-      fetch("http://localhost:3001/api/v1/finduser", options)
+      fetch("http://localhost:3003/api/v1/finduser", options)
         .then((response) => response.json())
         .then((data) => {
           if (data != undefined) {
@@ -30,7 +31,7 @@ function Admin() {
           console.log(err);
         });
     } else {
-      fetch("http://localhost:3001/api/v1/getuser")
+      fetch("http://localhost:3003/api/v1/getuser")
         .then((response) => response.json())
         .then((data) => {
           if (data != undefined) {
@@ -43,7 +44,7 @@ function Admin() {
     }
   };
   useEffect(() => {
-    fetch("http://localhost:3001/api/v1/getuser")
+    fetch("http://localhost:3003/api/v1/getuser")
       .then((response) => response.json())
       .then((data) => {
         if (data != undefined) {
@@ -63,7 +64,9 @@ function Admin() {
       <div className={cx("container")}>
         <div className={cx("container_search")}>
           <div>
-            <div className={cx("icon")}></div>
+            <div className={cx("icon")}>
+              <FontAwesomeIcon icon="search" />
+            </div>
             <input
               onChange={handleChangeSearch}
               type="check"

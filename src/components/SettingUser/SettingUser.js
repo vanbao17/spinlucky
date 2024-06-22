@@ -44,7 +44,7 @@ function SettingUser() {
     }
   }, [dataChange]);
   useEffect(() => {
-    fetch("http://localhost:3001/api/v1/getuserpercent", {
+    fetch("http://localhost:3003/api/v1/getuserpercent", {
       method: "POST",
       headers: {
         "Content-type": "application/json",
@@ -56,7 +56,7 @@ function SettingUser() {
         if (data.length !== 0) {
           setuserpercent(data);
         } else {
-          fetch("http://localhost:3001/api/v1/getItems")
+          fetch("http://localhost:3003/api/v1/getItems")
             .then((response) => response.json())
             .then((dt1) => {
               if (dt1 != undefined && dt1.length != 0) {
@@ -82,7 +82,7 @@ function SettingUser() {
         }
         let id_item = item.id_item;
         let percent = item.percent;
-        fetch("http://localhost:3001/api/v1/adduserpercent", {
+        fetch("http://localhost:3003/api/v1/adduserpercent", {
           method: "POST",
           headers: {
             "Content-type": "application/json",
@@ -107,7 +107,7 @@ function SettingUser() {
         if (check.length != 0) {
           item.percent = parseFloat(check[0].percent);
         }
-        fetch("http://localhost:3001/api/v1/deleteuserpercent", {
+        fetch("http://localhost:3003/api/v1/deleteuserpercent", {
           method: "POST",
           headers: {
             "Content-type": "application/json",
@@ -119,7 +119,7 @@ function SettingUser() {
               let id_user = item.id_user;
               let id_item = item.id_item;
               let percent = item.percent;
-              fetch("http://localhost:3001/api/v1/adduserpercent", {
+              fetch("http://localhost:3003/api/v1/adduserpercent", {
                 method: "POST",
                 headers: {
                   "Content-type": "application/json",

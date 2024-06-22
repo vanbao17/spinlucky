@@ -17,5 +17,9 @@ const media = {
   banner: require("./images/banner.png"),
   so1: require("./images/1.jpg"),
   videobg: require("./images/video-bg.mp4"),
+  imgBackGround: require("./images/backgroud.png"),
+  imgHistory: require("./images/khung-lich-su.png"),
+  imgTitle: require("./images/chu-vong-quay-may-man.png"),
+  imgCong: require("./images/khung-chuc-mung-nguoi-trung.png"),
 };
 export default media;

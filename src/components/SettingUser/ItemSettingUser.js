@@ -26,7 +26,7 @@ function ItemSettingUser({ state, item, sendtoData, userpercent }) {
     refName.current.removeAttribute("readOnly");
   };
   useEffect(() => {
-    fetch("http://localhost:3001/api/v1/getItems")
+    fetch("http://localhost:3003/api/v1/getItems")
       .then((response) => response.json())
       .then((dt1) => {
         if (dt1 != undefined && dt1.length != 0) {

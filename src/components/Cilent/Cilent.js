@@ -8,6 +8,7 @@ import classNames from "classnames/bind";
 import styles from "./Cilent.module.scss";
 import Popup from "../Popup/Popup";
 import React from "react";
+import { useMediaQuery } from "react-responsive";
 const cx = classNames.bind(styles);
 
 function Cilent() {
@@ -19,11 +20,12 @@ function Cilent() {
   const username = sessionStorage.getItem("username");
   const [state, setState] = useState(0);
   const [winner, setwinner] = useState(null);
-  const [history, sethistory] = useState([]);
+  const [smallScreen, setsmallScreen] = useState(false);
   const [historydb, sethistorydb] = useState([]);
   // const [data, setdata] = useState([...segments2]);
+  const isSmallScreen = useMediaQuery({ query: "(max-width:768px)" });
+  const userSession = sessionStorage.getItem("username");
   useEffect(() => {
-    const userSession = sessionStorage.getItem("username");
     if (userSession == null) {
       navigate("/Account");
     } else {
@@ -37,6 +39,7 @@ function Cilent() {
   const handlePopup = () => {
     setstatepopup(!setstatepopup);
   };
+
   const handleAdd = () => {
     let username = sessionStorage.getItem("username");
     let password = refPassword.current.value;
@@ -47,7 +50,7 @@ function Cilent() {
       },
       body: JSON.stringify({ username }),
     };
-    fetch("http://localhost:3001/api/v1/findwithusername", options)
+    fetch("http://localhost:3003/api/v1/findwithusername", options)
       .then((response) => {
         return response.json();
       })
@@ -61,7 +64,7 @@ function Cilent() {
             },
             body: JSON.stringify({ password, iduser }),
           };
-          fetch("http://localhost:3001/api/v1/updatePassword", options1)
+          fetch("http://localhost:3003/api/v1/updatePassword", options1)
             .then((response1) => {
               if (response1.status == 200) {
                 setstatepopup(!setstatepopup);
@@ -77,7 +80,7 @@ function Cilent() {
       });
   };
   useEffect(() => {
-    fetch("http://localhost:3001/api/v1/findwithusername", {
+    fetch("http://localhost:3003/api/v1/findwithusername", {
       method: "POST",
       headers: {
         "Content-type": "application/json",
@@ -89,7 +92,7 @@ function Cilent() {
         if (data != undefined) {
           setuser(data[0]);
           let id_user = data[0].id_user;
-          fetch("http://localhost:3001/api/v1/getdstrungthuong", {
+          fetch("http://localhost:3003/api/v1/getdstrungthuong", {
             method: "POST",
             headers: {
               "Content-type": "application/json",
@@ -112,7 +115,7 @@ function Cilent() {
       });
   }, []);
   useEffect(() => {
-    fetch("http://localhost:3001/api/v1/findwithusername", {
+    fetch("http://localhost:3003/api/v1/findwithusername", {
       method: "POST",
       headers: {
         "Content-type": "application/json",
@@ -123,7 +126,7 @@ function Cilent() {
       .then((dt1) => {
         const id_user = dt1[0].id_user;
         if (dt1 != undefined || dt1.length != 0) {
-          fetch("http://localhost:3001/api/v1/findPercentUser", {
+          fetch("http://localhost:3003/api/v1/findPercentUser", {
             method: "POST",
             headers: {
               "Content-type": "application/json",
@@ -133,7 +136,7 @@ function Cilent() {
             .then((response) => response.json())
             .then((dt11) => {
               if (dt11.length != 0) {
-                fetch("http://localhost:3001/api/v1/getalluserpercent", {
+                fetch("http://localhost:3003/api/v1/getalluserpercent", {
                   method: "POST",
                   headers: {
                     "Content-type": "application/json",
@@ -150,7 +153,7 @@ function Cilent() {
                     console.log(err);
                   });
               } else {
-                fetch("http://localhost:3001/api/v1/getItems")
+                fetch("http://localhost:3003/api/v1/getItems")
                   .then((response) => response.json())
                   .then((dt3) => {
                     if (dt3 != undefined && dt3.length != 0) {
@@ -225,7 +228,7 @@ function Cilent() {
     const id_item = history.id_item;
     const date = history.date;
 
-    fetch("http://localhost:3001/api/v1/addHistory", {
+    fetch("http://localhost:3003/api/v1/addHistory", {
       method: "POST",
       headers: {
         "Content-type": "application/json",
@@ -234,7 +237,7 @@ function Cilent() {
     })
       .then((response) => {
         if (response.status == 200) {
-          fetch("http://localhost:3001/api/v1/getdstrungthuong", {
+          fetch("http://localhost:3003/api/v1/getdstrungthuong", {
             method: "POST",
             headers: {
               "Content-type": "application/json",
@@ -257,6 +260,13 @@ function Cilent() {
         console.log(err);
       });
   };
+  useEffect(() => {
+    if (isSmallScreen == true) {
+      setsmallScreen(true);
+    } else {
+      setsmallScreen(false);
+    }
+  }, [isSmallScreen]);
   return (
     <div className={cx("wrapper")}>
       {statepopup == true ? (
@@ -287,7 +297,7 @@ function Cilent() {
       ) : (
         <></>
       )}
-      <div className={cx("btn-action")}>
+      {/* <div className={cx("btn-action")}>
         <button
           onClick={() => {
             setstatepopup(!statepopup);
@@ -303,8 +313,10 @@ function Cilent() {
         >
           <span>Đăng xuất</span>
         </button>
-      </div>
-      <h1>Vòng quay may mắn</h1>
+      </div> */}
+      <span>
+        <img className={cx("imgTitle")} src={media.imgTitle}></img>
+      </span>
       {/* <textarea
         onKeyDown={handleAddInput}
         id="w3review"
@@ -313,9 +325,10 @@ function Cilent() {
         cols="50"
       ></textarea> */}
       <div className={cx("video-background")}>
-        <video autoPlay loop muted>
+        {/* <video autoPlay loop muted>
           <source src={media.videobg} type="video/mp4" />
-        </video>
+        </video> */}
+        <img src={media.imgBackGround}></img>
       </div>
       {/* {<span>target: {dt}</span>} */}
       <div className={cx("container")}>
@@ -343,9 +356,10 @@ function Cilent() {
               buttonText="Quay"
               winningSegment={dt}
               isOnlyOnce={false}
-              size={260}
-              upDuration={100}
-              downDuration={1000}
+              size={smallScreen == true ? 180 : 230}
+              // size={230}
+              upDuration={0}
+              downDuration={1000 * data.length}
               fontFamily="Arial"
             />
           ) : (
@@ -354,9 +368,12 @@ function Cilent() {
         </div>
 
         <div className={cx("containerhistory")}>
-          <h2>Lịch sử trúng thưởng</h2>
-
-          <div className={cx("history")}>
+          <div
+            className={cx("history")}
+            style={{ backgroundImage: `url(${media.imgHistory})` }}
+          >
+            {/* <img className={cx("imgHistory")} src={media.imgHistory}></img> */}
+            <h2>Lịch sử trúng thưởng</h2>
             {historydb.length == 0 ? (
               <h3
                 style={{
@@ -369,29 +386,38 @@ function Cilent() {
                 Chưa có lịch sử
               </h3>
             ) : (
-              <table>
-                <thead>
-                  <tr>
-                    <th>Stt</th>
-                    <th>Item</th>
-                    <th>Date</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {historydb.map((item, index) => {
-                    const name = data.filter(
-                      (item1) => item1.id_item == item.id_item
-                    );
-                    return (
-                      <tr>
-                        <td>{index + 1}</td>
-                        <td>{name.length != 0 ? name[0].name_item : ""}</td>
-                        <td>{item.date}</td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
+              // <div className={cx("test")}>
+              //   {historydb.map((item, index) => {
+              //     const name = data.filter(
+              //       (item1) => item1.id_item == item.id_item
+              //     );
+              //     return (
+              // <span>
+              //   <span>{index + 1}</span>
+              //   <span>{name.length != 0 ? name[0].name_item : ""}</span>
+              //   <span>{formatDate(item.date)}</span>
+              // </span>
+              //     );
+              //   })}
+              // </div>
+              <div className={cx("containerTable")}>
+                <table>
+                  <tbody>
+                    {historydb.map((item, index) => {
+                      const name = data.filter(
+                        (item1) => item1.id_item == item.id_item
+                      );
+                      return (
+                        <tr>
+                          <td>{index + 1}</td>
+                          <td>{name.length != 0 ? name[0].name_item : ""}</td>
+                          <td>{formatDate(item.date)}</td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
             )}
           </div>
         </div>
@@ -401,6 +427,7 @@ function Cilent() {
           <div
             className={cx("congrats-box")}
             onClick={(e) => e.stopPropagation()}
+            style={{ backgroundImage: `url(${media.imgCong})` }}
           >
             <div className={cx("congrats-content")}>
               <h2>Chúc mừng bạn đã trúng {winner}</h2>

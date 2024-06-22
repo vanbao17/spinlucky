@@ -9,19 +9,19 @@
     width: 100%;
     display: flex;
     flex-direction: column;
+    gap: 100%;
     margin: 0px auto;
     justify-content: center;
   }
   .elementwheel {
     width: 100%;
-    margin-left: -84px;
-    margin-bottom: -250px;
+    margin-left: 0;
+    // margin-bottom: -250px;
   }
   .containerhistory {
     width: 100%;
     display: block;
     height: 500px;
-    overflow-y: scroll;
   }
   .video-background {
     position: fixed;
@@ -41,12 +41,19 @@
 
   .history {
     width: 90%;
-    height: 70%;
+    height: 600px;
+    position: relative;
+    overflow: hidden;
     overflow-y: scroll;
     border-radius: 15px;
     margin: 0px auto;
     background-color: #fff;
     color: black;
+    z-index: 1;
+    padding: 24px 0px;
+    background-size: cover; /* Adjust size to cover the container */
+    background-repeat: no-repeat; /* Prevent image repetition */
+    background-position: center;
   }
   .congrats-overlay {
     position: fixed;
@@ -62,22 +69,35 @@
   }
 
   .congrats-box {
-    background-color: #f8f9fa;
-    border: 2px solid #28a745;
+    width: 100%;
+    height: 30%;
+    // background-color: #f8f9fa;
+    // border: 2px solid #28a745;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
     padding: 20px;
     z-index: 1001; /* Đảm bảo box nổi trên overlay */
+    background-size: cover; /* Adjust size to cover the container */
+    background-repeat: no-repeat; /* Prevent image repetition */
+    background-position: center;
+    position: relative;
   }
 
   .congrats-content h2 {
-    color: #28a745;
+    color: #fcf79f;
     margin-bottom: 10px;
   }
 
   .congrats-content p {
     color: #333;
+  }
+  .congrats-content {
+    position: absolute;
+    width: 70%;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
   .btn-close {
     background-color: #28a745;
@@ -89,11 +109,17 @@
       opacity: 0.8;
     }
   }
+  .containerTable {
+    height: 400px;
+    overflow-y: scroll;
+    margin-top: 10px !important;
+  }
   table {
-    width: 100%;
+    width: 83% !important;
     border-collapse: collapse;
     font-size: 18px;
     text-align: left;
+    margin: 0px auto;
   }
   th,
   td {
@@ -134,15 +160,52 @@
       margin-bottom: 20px;
     }
   }
+  .imgTitle {
+    width: 75%;
+    margin-top: 20px;
+  }
+  .imgTitle {
+    width: 50%;
+  }
+  .imgHistory {
+    width: 100%;
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    top: 0;
+  }
+  .history h2 {
+    position: sticky;
+    margin-top: 10px;
+    background-color: #fff;
+    left: 0;
+    top: 0;
+    width: 84%;
+    height: 10%;
+    margin: 24px 0px;
+    z-index: 1;
+    margin: 0px auto;
+  }
+  .test {
+    width: 83%;
+    margin: 0px auto;
+    margin-top: 53px;
+    span {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
 }
 
 @media (min-width: 768px) {
   .container {
     width: 100%;
+
+    align-items: flex-start;
     display: flex;
     margin: 0px auto;
     position: relative;
-
     justify-content: center;
   }
   .elementwheel {
@@ -172,12 +235,16 @@
   }
   .history {
     width: 50%;
-    height: 70%;
-    overflow-y: scroll;
+    height: 600px;
+    overflow: hidden;
+    position: relative;
     border-radius: 15px;
     margin: 0px auto;
-    background-color: #fff;
     color: black;
+    z-index: 999;
+    background-size: contain; /* Adjust size to cover the container */
+    background-repeat: no-repeat; /* Prevent image repetition */
+    background-position: center;
   }
   .congrats-overlay {
     position: fixed;
@@ -193,22 +260,35 @@
   }
 
   .congrats-box {
-    background-color: #f8f9fa;
-    border: 2px solid #28a745;
+    width: 40%;
+    height: 30%;
+    // background-color: #f8f9fa;
+    // border: 2px solid #28a745;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
     padding: 20px;
     z-index: 1001; /* Đảm bảo box nổi trên overlay */
+    background-size: cover; /* Adjust size to cover the container */
+    background-repeat: no-repeat; /* Prevent image repetition */
+    background-position: center;
+    position: relative;
   }
 
   .congrats-content h2 {
-    color: #28a745;
+    color: #fcf79f;
     margin-bottom: 10px;
   }
 
   .congrats-content p {
     color: #333;
+  }
+  .congrats-content {
+    position: absolute;
+    width: 60%;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
   .btn-close {
     background-color: #28a745;
@@ -220,11 +300,21 @@
       opacity: 0.8;
     }
   }
+  .containerTable {
+    height: 470px;
+    overflow: hidden;
+    overflow-y: scroll;
+    margin-top: 42px !important;
+    margin-bottom: 40px;
+  }
   table {
-    width: 100%;
+    width: 83% !important;
     border-collapse: collapse;
     font-size: 18px;
     text-align: left;
+    margin: 0px auto;
+    z-index: -1;
+    color: #fff;
   }
   th,
   td {
@@ -263,6 +353,40 @@
     input {
       padding: 12px;
       margin-bottom: 20px;
+    }
+  }
+  .imgTitle {
+    width: 50%;
+  }
+  .imgHistory {
+    width: 100%;
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    top: 0;
+  }
+  .history h2 {
+    position: sticky;
+    left: 0;
+    top: 25px;
+    display: flex;
+    align-items: center;
+    color: #fcf79f;
+    font-weight: 600;
+    justify-content: center;
+    width: 84%;
+    height: 10%;
+    z-index: 6;
+    margin: 0px auto;
+  }
+  .test {
+    width: 83%;
+    margin: 0px auto;
+    margin-top: 53px;
+    span {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
   }
 }

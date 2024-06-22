@@ -2,6 +2,7 @@ import classNames from "classnames/bind";
 import styles from "./Admin.module.scss";
 import { useContext, useRef, useState } from "react";
 import Popup from "../Popup/Popup";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router-dom";
 import React from "react";
 const cx = classNames.bind(styles);
@@ -21,7 +22,7 @@ function ItemRow({ data, statePage }) {
       },
       body: JSON.stringify({ iduser }),
     };
-    fetch("http://localhost:3001/api/v1/deleteuser", options)
+    fetch("http://localhost:3003/api/v1/deleteuser", options)
       .then((response) => {
         if (response.status == 200) {
           statePage(state1);
@@ -48,7 +49,7 @@ function ItemRow({ data, statePage }) {
       },
       body: JSON.stringify({ username }),
     };
-    fetch("http://localhost:3001/api/v1/findwithusername", options)
+    fetch("http://localhost:3003/api/v1/findwithusername", options)
       .then((response) => {
         return response.json();
       })
@@ -62,7 +63,7 @@ function ItemRow({ data, statePage }) {
             },
             body: JSON.stringify({ password, iduser }),
           };
-          fetch("http://localhost:3001/api/v1/updatePassword", options1)
+          fetch("http://localhost:3003/api/v1/updatePassword", options1)
             .then((response1) => {
               if (response1.status == 200) {
                 setstatepopup(!setstatepopup);
@@ -89,6 +90,7 @@ function ItemRow({ data, statePage }) {
             setstate(!state);
           }}
         >
+          <FontAwesomeIcon icon="ellipsis-v" />
           Sửa
         </div>
         {state == true ? (

@@ -9,7 +9,7 @@ const cx = classNames.bind(styles);
 function ItemRow({ data, statePage }) {
   const [nameitem, setnameitem] = useState("");
   useEffect(() => {
-    fetch("http://localhost:3001/api/v1/getItems")
+    fetch("http://localhost:3003/api/v1/getItems")
       .then((response) => response.json())
       .then((data1) => {
         if (data1 != undefined) {

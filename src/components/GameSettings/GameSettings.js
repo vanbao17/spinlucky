@@ -37,11 +37,11 @@ function GameSettings() {
         },
         body: JSON.stringify({ name_item, percent, color, image_item }),
       };
-      fetch("http://localhost:3001/api/v1/addItem", options)
+      fetch("http://localhost:3003/api/v1/addItem", options)
         .then((response) => {
           if (response.status == 200) {
             setstatepopup(!setstatepopup);
-            fetch("http://localhost:3001/api/v1/getItems")
+            fetch("http://localhost:3003/api/v1/getItems")
               .then((response) => response.json())
               .then((data) => {
                 if (data != undefined) {
@@ -70,7 +70,7 @@ function GameSettings() {
         },
         body: JSON.stringify({ itemname }),
       };
-      fetch("http://localhost:3001/api/v1/finditem", options)
+      fetch("http://localhost:3003/api/v1/finditem", options)
         .then((response) => response.json())
         .then((data) => {
           if (data != undefined) {
@@ -81,7 +81,7 @@ function GameSettings() {
           console.log(err);
         });
     } else {
-      fetch("http://localhost:3001/api/v1/getItems")
+      fetch("http://localhost:3003/api/v1/getItems")
         .then((response) => response.json())
         .then((data) => {
           if (data != undefined) {
@@ -94,7 +94,7 @@ function GameSettings() {
     }
   };
   useEffect(() => {
-    fetch("http://localhost:3001/api/v1/getItems")
+    fetch("http://localhost:3003/api/v1/getItems")
       .then((response) => response.json())
       .then((data) => {
         if (data != undefined) {

@@ -47,7 +47,7 @@ function ItemRow({ data, statePage, totalPercent }) {
           id_item,
         }),
       };
-      fetch("http://localhost:3001/api/v1/updateItems", options)
+      fetch("http://localhost:3003/api/v1/updateItems", options)
         .then((response) => {
           if (response.status == 200) {
             statePage(state1);
@@ -72,7 +72,7 @@ function ItemRow({ data, statePage, totalPercent }) {
       },
       body: JSON.stringify({ id_item }),
     };
-    fetch("http://localhost:3001/api/v1/deleteItem", options)
+    fetch("http://localhost:3003/api/v1/deleteItem", options)
       .then((response) => {
         if (response.status == 200) {
           statePage(state1);
@@ -99,7 +99,7 @@ function ItemRow({ data, statePage, totalPercent }) {
       },
       body: JSON.stringify({ username }),
     };
-    fetch("http://localhost:3001/api/v1/findwithusername", options)
+    fetch("http://localhost:3003/api/v1/findwithusername", options)
       .then((response) => {
         return response.json();
       })
@@ -113,7 +113,7 @@ function ItemRow({ data, statePage, totalPercent }) {
             },
             body: JSON.stringify({ password, iduser }),
           };
-          fetch("http://localhost:3001/api/v1/updatePassword", options1)
+          fetch("http://localhost:3003/api/v1/updatePassword", options1)
             .then((response1) => {
               if (response1.status == 200) {
                 setstatepopup(!setstatepopup);
@@ -146,14 +146,6 @@ function ItemRow({ data, statePage, totalPercent }) {
         </div>
         {state == true ? (
           <ul className={cx("combobox_item")}>
-            <li
-              onClick={() => {
-                setstatepopup(true);
-                setstate(false);
-              }}
-            >
-              Đổi mật khẩu
-            </li>
             <li
               onClick={() => {
                 setstatepopupupdate(true);

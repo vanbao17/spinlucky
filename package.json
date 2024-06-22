@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-
+    "@fortawesome/fontawesome-svg-core": "^6.5.2",
+    "@fortawesome/free-solid-svg-icons": "^6.5.2",
+    "@fortawesome/react-fontawesome": "^0.2.2",
     "classnames": "^2.5.1",
     "http-proxy-middleware": "^3.0.0",
     "prettier": "^3.3.1",
@@ -13,7 +15,7 @@
     "react-router-dom": "^6.23.1",
     "react-scripts": "5.0.1",
     "react-spinning-wheel": "2.1.0",
-    "react-wheel-of-prizes": "1.0.9",
+    "react-wheel-of-prizes": "github:vanbao17/react-wheel-of-prizes",
     "sass": "^1.77.4",
     "web-vitals": "^2.1.4"
   },

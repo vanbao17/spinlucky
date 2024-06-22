@@ -31,7 +31,7 @@ function Register() {
         },
         body: JSON.stringify({ username }),
       };
-      fetch("http://localhost:3001/api/v1/checkuser", options)
+      fetch("http://localhost:3003/api/v1/checkuser", options)
         .then((response) => {
           if (response.status == 200) {
             setwarning("Tên người dùng đã tồn tại");
@@ -44,7 +44,7 @@ function Register() {
               },
               body: JSON.stringify({ username, password, sdt }),
             };
-            fetch("http://localhost:3001/api/v1/register", options_insert)
+            fetch("http://localhost:3003/api/v1/register", options_insert)
               .then((responseInsert) => {
                 if (responseInsert.status == 200) {
                   localStorage.getItem("username", username);
