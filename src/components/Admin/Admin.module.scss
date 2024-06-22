@@ -36,6 +36,13 @@ thead tr th:last-child {
     padding: 6px;
     z-index: 600;
   }
+  .container_data {
+    background-color: #fff;
+    width: 100%;
+    border-radius: 15px;
+    overflow-x: scroll;
+    margin-top: 15px;
+  }
 }
 .combobox_item {
   position: absolute;
@@ -70,7 +77,6 @@ thead tr th:last-child {
   background-color: #fff;
   width: 100%;
   border-radius: 15px;
-  overflow-x: scroll;
   margin-top: 15px;
 }
 .container_popup {

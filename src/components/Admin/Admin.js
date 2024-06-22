@@ -5,9 +5,17 @@ import ItemRow from "./ItemRow";
 import { useEffect, useState } from "react";
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useNavigate } from "react-router-dom";
 const cx = classNames.bind(styles);
 
 function Admin() {
+  const nav = useNavigate();
+  const userSession = sessionStorage.getItem("username");
+  useEffect(() => {
+    if (userSession == null) {
+      nav("/Account");
+    }
+  }, [userSession]);
   const [datauser, setdatauser] = useState([]);
   const [st, setst] = useState(false);
   const handleChangeSearch = (e) => {
