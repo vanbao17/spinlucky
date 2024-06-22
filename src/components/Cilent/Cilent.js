@@ -278,7 +278,7 @@ function Cilent() {
               size={smallScreen == true ? 180 : 230}
               // size={230}
               upDuration={data.length>50?0:50}
-              downDuration={data.length>50?1000 * data.length:1500}
+              downDuration={data.length>50?1000 * data.length:500}
               fontFamily="Arial"
             />
           ) : (
