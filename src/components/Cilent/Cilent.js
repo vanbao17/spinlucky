@@ -135,8 +135,8 @@ function Cilent() {
         console.log(err);
       });
   };
-  const handleDelete = (data) => {
-    const id_item = data.id_item;
+  const handleDelete = (dt) => {
+    const id_item = dt.id_item;
     const options = {
       method: "POST",
       headers: {
@@ -144,25 +144,56 @@ function Cilent() {
       },
       body: JSON.stringify({ id_item }),
     };
-    fetch("https://vongquay.xyz/api/v1/deleteItem", options)
-      .then((response) => {
-        if (response.status == 200) {
-          fetch("https://vongquay.xyz/api/v1/getItems")
-            .then((response) => response.json())
-            .then((dt3) => {
-              if (dt3 != undefined && dt3.length != 0) {
-                setdata([...dt3]);
-                setState(!state);
-              }
-            })
-            .catch((err) => {
-              console.log(err);
-            });
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (data.length == 1) {
+      fetch("https://vongquay.xyz/api/v1/resetAuto")
+        .then((rs) => {
+          if (rs.status == 200) {
+            console.log("oke");
+          }
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+      fetch("https://vongquay.xyz/api/v1/deleteItem", options)
+        .then((response) => {
+          if (response.status == 200) {
+            fetch("https://vongquay.xyz/api/v1/getItems")
+              .then((response) => response.json())
+              .then((dt3) => {
+                if (dt3 != undefined && dt3.length != 0) {
+                  setdata([...dt3]);
+                  setState(!state);
+                }
+              })
+              .catch((err) => {
+                console.log(err);
+              });
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      fetch("https://vongquay.xyz/api/v1/deleteItem", options)
+        .then((response) => {
+          if (response.status == 200) {
+            fetch("https://vongquay.xyz/api/v1/getItems")
+              .then((response) => response.json())
+              .then((dt3) => {
+                if (dt3 != undefined && dt3.length != 0) {
+                  setdata([...dt3]);
+                  setState(!state);
+                }
+              })
+              .catch((err) => {
+                console.log(err);
+              });
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   };
   return (
     <div className={cx("wrapper")}>
