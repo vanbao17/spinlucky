@@ -22,7 +22,7 @@ function ItemRow({ data, statePage }) {
       },
       body: JSON.stringify({ iduser }),
     };
-    fetch("http://localhost:3003/api/v1/deleteuser", options)
+    fetch("https://vongquay.xyz/api/v1/deleteuser", options)
       .then((response) => {
         if (response.status == 200) {
           statePage(state1);
@@ -49,7 +49,7 @@ function ItemRow({ data, statePage }) {
       },
       body: JSON.stringify({ username }),
     };
-    fetch("http://localhost:3003/api/v1/findwithusername", options)
+    fetch("https://vongquay.xyz/api/v1/findwithusername", options)
       .then((response) => {
         return response.json();
       })
@@ -63,7 +63,7 @@ function ItemRow({ data, statePage }) {
             },
             body: JSON.stringify({ password, iduser }),
           };
-          fetch("http://localhost:3003/api/v1/updatePassword", options1)
+          fetch("https://vongquay.xyz/api/v1/updatePassword", options1)
             .then((response1) => {
               if (response1.status == 200) {
                 setstatepopup(!setstatepopup);

@@ -25,7 +25,7 @@ function Login() {
       },
       body: JSON.stringify({ username, password }),
     };
-    fetch("http://localhost:3003/api/v1/login", options)
+    fetch("https://vongquay.xyz/api/v1/login", options)
       .then((response) => {
         if (response.status == 200) {
           if (username == "admin") {

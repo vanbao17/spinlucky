@@ -50,7 +50,7 @@ function Cilent() {
       },
       body: JSON.stringify({ username }),
     };
-    fetch("http://localhost:3003/api/v1/findwithusername", options)
+    fetch("https://vongquay.xyz/api/v1/findwithusername", options)
       .then((response) => {
         return response.json();
       })
@@ -64,7 +64,7 @@ function Cilent() {
             },
             body: JSON.stringify({ password, iduser }),
           };
-          fetch("http://localhost:3003/api/v1/updatePassword", options1)
+          fetch("https://vongquay.xyz/api/v1/updatePassword", options1)
             .then((response1) => {
               if (response1.status == 200) {
                 setstatepopup(!setstatepopup);
@@ -80,7 +80,7 @@ function Cilent() {
       });
   };
   useEffect(() => {
-    fetch("http://localhost:3003/api/v1/findwithusername", {
+    fetch("https://vongquay.xyz/api/v1/findwithusername", {
       method: "POST",
       headers: {
         "Content-type": "application/json",
@@ -92,7 +92,7 @@ function Cilent() {
         if (data != undefined) {
           setuser(data[0]);
           let id_user = data[0].id_user;
-          fetch("http://localhost:3003/api/v1/getdstrungthuong", {
+          fetch("https://vongquay.xyz/api/v1/getdstrungthuong", {
             method: "POST",
             headers: {
               "Content-type": "application/json",
@@ -115,7 +115,7 @@ function Cilent() {
       });
   }, []);
   useEffect(() => {
-    fetch("http://localhost:3003/api/v1/findwithusername", {
+    fetch("https://vongquay.xyz/api/v1/findwithusername", {
       method: "POST",
       headers: {
         "Content-type": "application/json",
@@ -126,7 +126,7 @@ function Cilent() {
       .then((dt1) => {
         const id_user = dt1[0].id_user;
         if (dt1 != undefined || dt1.length != 0) {
-          fetch("http://localhost:3003/api/v1/findPercentUser", {
+          fetch("https://vongquay.xyz/api/v1/findPercentUser", {
             method: "POST",
             headers: {
               "Content-type": "application/json",
@@ -136,7 +136,7 @@ function Cilent() {
             .then((response) => response.json())
             .then((dt11) => {
               if (dt11.length != 0) {
-                fetch("http://localhost:3003/api/v1/getalluserpercent", {
+                fetch("https://vongquay.xyz/api/v1/getalluserpercent", {
                   method: "POST",
                   headers: {
                     "Content-type": "application/json",
@@ -153,7 +153,7 @@ function Cilent() {
                     console.log(err);
                   });
               } else {
-                fetch("http://localhost:3003/api/v1/getItems")
+                fetch("https://vongquay.xyz/api/v1/getItems")
                   .then((response) => response.json())
                   .then((dt3) => {
                     if (dt3 != undefined && dt3.length != 0) {
@@ -228,7 +228,7 @@ function Cilent() {
     const id_item = history.id_item;
     const date = history.date;
 
-    fetch("http://localhost:3003/api/v1/addHistory", {
+    fetch("https://vongquay.xyz/api/v1/addHistory", {
       method: "POST",
       headers: {
         "Content-type": "application/json",
@@ -237,7 +237,7 @@ function Cilent() {
     })
       .then((response) => {
         if (response.status == 200) {
-          fetch("http://localhost:3003/api/v1/getdstrungthuong", {
+          fetch("https://vongquay.xyz/api/v1/getdstrungthuong", {
             method: "POST",
             headers: {
               "Content-type": "application/json",

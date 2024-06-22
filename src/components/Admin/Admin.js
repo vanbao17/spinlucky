@@ -20,7 +20,7 @@ function Admin() {
         },
         body: JSON.stringify({ username }),
       };
-      fetch("http://localhost:3003/api/v1/finduser", options)
+      fetch("https://vongquay.xyz/api/v1/finduser", options)
         .then((response) => response.json())
         .then((data) => {
           if (data != undefined) {
@@ -31,7 +31,7 @@ function Admin() {
           console.log(err);
         });
     } else {
-      fetch("http://localhost:3003/api/v1/getuser")
+      fetch("https://vongquay.xyz/api/v1/getuser")
         .then((response) => response.json())
         .then((data) => {
           if (data != undefined) {
@@ -44,7 +44,7 @@ function Admin() {
     }
   };
   useEffect(() => {
-    fetch("http://localhost:3003/api/v1/getuser")
+    fetch("https://vongquay.xyz/api/v1/getuser")
       .then((response) => response.json())
       .then((data) => {
         if (data != undefined) {
